@@ -5,6 +5,12 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+	public enum State
+	{
+		Normal,
+		Talk
+	}
+
 	[Header("移動の速さ"), SerializeField]
 	private float _speed = 3;
 
@@ -31,7 +37,19 @@ public class Player : MonoBehaviour
 	private float _turnVelocity;
 	private bool _isGroundedPrev;
 
+	//プレイヤーの状態
+	private State state;
+
+	//プレイヤーの会話処理スクリプト
+	private PlayerTalkScript playerTalkScript;
+
 	Animator animator; // アニメーション
+
+	private void Start()
+	{
+		state = State.Normal;
+		playerTalkScript = GetComponent<PlayerTalkScript>();
+	}
 	public void OnMove(InputAction.CallbackContext context)
 	{
 		// 入力値を保持しておく
@@ -135,6 +153,14 @@ public class Player : MonoBehaviour
 		else
 		{
 			animator.SetBool("Move", false);
+		}
+
+		if(state == State.Normal)
+		{
+			if(_characterController.isGrounded)
+			{
+				
+			}
 		}
 	}
 
