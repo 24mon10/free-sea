@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,7 +18,7 @@ public class PlayerTalkScript : MonoBehaviour
 	//TalkUIゲームオブジェクト
 	[SerializeField] GameObject talkUI = null;
 	//メッセージUI
-	private Text messageText = null;
+	private TextMeshProUGUI messageText = null;
 	//表示するメッセージ
 	private string allMessage = null;
 	//使用する分割文字列
@@ -41,19 +42,21 @@ public class PlayerTalkScript : MonoBehaviour
 	//メッセージを全て表示したかどうか
 	bool isEndMessage = false;
 
+	[SerializeField]
+	Player player;
+
+
 	// Start is called before the first frame update
 	void Start()
     {
-		
 		pushIcon.enabled = false;
-		messageText = talkUI.GetComponent<Text>();
+		messageText = talkUI.GetComponentInChildren<TextMeshProUGUI>();
     }
 
 	
     // Update is called once per frame
     void Update()
     {
-		Player decision = new Player();
 		//　メッセージが終わっているか、メッセージがない場合はこれ以降何もしない
 		if (isEndMessage || allMessage == null)return;
 
@@ -77,14 +80,16 @@ public class PlayerTalkScript : MonoBehaviour
 			elapsedTime += Time.deltaTime;
 
 
-			if (decision.Decision == true)
+			if (player.Decision == true)
 			{
 				//　ここまでに表示しているテキストに残りのメッセージを足す
 				messageText.text += splitMessage[messageNum].Substring(nowTextNum);
 				isOneMessage = true;
+				player.Decision = false;
 			}
 			//一回に表示するメッセージを表示した
-		}else
+		}
+		else
 		{
 			elapsedTime += Time.deltaTime;
 
@@ -96,7 +101,7 @@ public class PlayerTalkScript : MonoBehaviour
 			}
 
 			//ボタンが押されたら次の文字表示処理
-			if (decision.Decision == true)
+			if (player.Decision == true)
 			{
 				nowTextNum = 0;
 				messageNum++;
@@ -105,6 +110,7 @@ public class PlayerTalkScript : MonoBehaviour
 				elapsedTime = 0f;
 				isOneMessage= false;
 
+				player.Decision = false;
 				//メッセージが全部表示されていたらゲームオブジェクト自体の削除
 				if(messageNum >= splitMessage.Length)
 				{
@@ -128,6 +134,7 @@ public class PlayerTalkScript : MonoBehaviour
 	{
 		talkIcon.SetActive(true);
 		conversationPartner = partnerObj;
+		Debug.Log(conversationPartner);
 	}
 
 	//　会話相手をリセット
@@ -158,12 +165,13 @@ public class PlayerTalkScript : MonoBehaviour
 		villager.SetState(Villager.State.Talk, transform);
 		this.allMessage = villager.GetConversation().GetConversationMessage();
 		//分割文字列で一回に表示するメッセージを分割する
-		splitMessage = Regex.Split(allMessage, @"/s*" + splitString + @"/s*", RegexOptions.IgnorePatternWhitespace);
+		splitMessage = Regex.Split(allMessage, @"\s*" + Regex.Escape(splitString) + @"\s*");
 		//初期化処理
 		nowTextNum = 0;
 		messageNum = 0;
 		messageText.text = "";
 		talkUI.SetActive(true);
+		talkIcon.SetActive(false);
 		isOneMessage = false;
 		isEndMessage = false;
 		//会話開始時の入力は一旦リセット

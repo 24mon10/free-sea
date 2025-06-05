@@ -16,27 +16,22 @@ public class ConversationScopeScript : MonoBehaviour
         
     }
 
-	void OnTriggerStay(Collider col)
+	void OnTriggerEnter(Collider other)
 	{
-		if (col.tag == "Player"
-			&& col.GetComponent<Player>().GetState() != Player.State.Talk
-			)
+		if (other.TryGetComponent<Player>(out var player))
 		{
-			Debug.Log("Playerにぶつかった");
 			//　Playerが近づいたら会話相手として自分のゲームオブジェクトを渡す
-			col.GetComponent<PlayerTalkScript>().SetConversationPartner(transform.parent.gameObject);
+			other.GetComponent<PlayerTalkScript>().SetConversationPartner(transform.parent.gameObject);
 		}
 	}
 
 
-	void OnTriggerExit(Collider col)
+	void OnTriggerExit(Collider other)
 	{
-		if (col.tag == "Player"
-			&& col.GetComponent<Player>().GetState() != Player.State.Talk
-			)
+		if (other.TryGetComponent<Player>(out var player))
 		{
 			//　Playerが遠ざかったら会話相手から外す
-			col.GetComponent<PlayerTalkScript>().ResetConversationPartner(transform.parent.gameObject);
+			other.GetComponent<PlayerTalkScript>().ResetConversationPartner(transform.parent.gameObject);
 		}
 	}
 }

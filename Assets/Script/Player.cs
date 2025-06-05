@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
 	private float _verticalVelocity;
 	private float _turnVelocity;
 	private bool _isGroundedPrev;
-	private bool _decision;
+	
 
 	//プレイヤーの状態
 	private State state;
@@ -46,10 +46,18 @@ public class Player : MonoBehaviour
 
 	Animator animator; // アニメーション
 
+	//Decition decision = new Decition();
+
+	bool decision;
+
 	public bool Decision
 	{
-		get { return _decision; }
+		get { return decision; }
+		set { decision = value; }
 	}
+
+
+
 	private void Start()
 	{
 		state = State.Normal;
@@ -77,13 +85,24 @@ public class Player : MonoBehaviour
 	}
 	public void OnDecision(InputAction.CallbackContext context)
 	{
-		_decision = true;
-		Debug.Log(_decision);
+		// performedコールバックだけ受け取る
+		if (context.performed)
+		{
+			decision = true;
+			Debug.Log(decision);
+
+		}
 	}
 
 	public void Release(InputAction.CallbackContext context)
 	{
-		_decision = false;
+		// performedコールバックだけ受け取る
+		if (context.performed)
+		{
+			decision = false;
+			Debug.Log(decision);
+
+		}
 	}
 	private void Awake()
 	{
@@ -99,7 +118,6 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-		Debug.Log(_decision);
 		Debug.Log(state);
 		if(state == State.Normal)
 		{
@@ -168,17 +186,20 @@ public class Player : MonoBehaviour
 					Quaternion.LookRotation(Vector3.Scale(moveVelocity, new Vector3(1, 0, 1))),
 					0.1f);
 
-				if(playerTalkScript.GetConversationPartner() != null
-					&& _decision == true)
-				{
-					SetState(State.Talk);
-				}
+				
 			}
 			else
 			{
 				animator.SetBool("Move", false);
 			}
-		}else if(state == State.Talk)
+		if (playerTalkScript.GetConversationPartner() != null
+				&& decision == true)
+		{
+			Debug.Log("ここに入った");
+			SetState(State.Talk);
+		}
+		}
+		else if(state == State.Talk)
 		{
 			animator.SetBool("Move", false);
 		}
@@ -195,6 +216,7 @@ public class Player : MonoBehaviour
 			var isGrounded = _characterController.isGrounded;
 			animator.SetBool("Move", false);
 			playerTalkScript.StartTalking();
+			decision = false;
 		}
 	}
 
