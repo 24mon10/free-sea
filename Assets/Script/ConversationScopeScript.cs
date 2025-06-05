@@ -22,10 +22,12 @@ public class ConversationScopeScript : MonoBehaviour
 			&& col.GetComponent<Player>().GetState() != Player.State.Talk
 			)
 		{
+			Debug.Log("Playerにぶつかった");
 			//　Playerが近づいたら会話相手として自分のゲームオブジェクトを渡す
-			col.GetComponent<UnityChanTalkScript>().SetConversationPartner(transform.parent.gameObject);
+			col.GetComponent<PlayerTalkScript>().SetConversationPartner(transform.parent.gameObject);
 		}
 	}
+
 
 	void OnTriggerExit(Collider col)
 	{
@@ -34,7 +36,7 @@ public class ConversationScopeScript : MonoBehaviour
 			)
 		{
 			//　Playerが遠ざかったら会話相手から外す
-			col.GetComponent<Player>().ResetConversationPartner(transform.parent.gameObject);
+			col.GetComponent<PlayerTalkScript>().ResetConversationPartner(transform.parent.gameObject);
 		}
 	}
 }
