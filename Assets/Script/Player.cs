@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
 	[Header("ÉJÉÅÉâ"), SerializeField]
 	private Camera m_targetCamera;
 
+	[SerializeField] GameObject player;
+
 	private Transform _transform;
 	private CharacterController _characterController;
 
@@ -62,6 +64,7 @@ public class Player : MonoBehaviour
 	{
 		state = State.Normal;
 		playerTalkScript = GetComponent<PlayerTalkScript>();
+		this.animator = player.GetComponent<Animator>();
 	}
 	public void OnMove(InputAction.CallbackContext context)
 	{

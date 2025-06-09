@@ -23,6 +23,7 @@ public class EnemyData :ScriptableObject
 	[SerializeField] int exp;
 	//金
 	[SerializeField] int gold;
-
+	//行動パターンリスト
+	public List<EnemyActionRecord> enemyActionRecords;
 
 }

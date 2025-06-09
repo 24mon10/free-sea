@@ -182,6 +182,7 @@ public class PlayerTalkScript : MonoBehaviour
 	{
 		isEndMessage = true;
 		talkUI.SetActive(false);
+		talkIcon.SetActive(true);
 		//　ユニティちゃんと村人両方の状態を変更する
 		var villagerScript = conversationPartner.GetComponent<Villager>();
 		villagerScript.SetState(Villager.State.Wait);
