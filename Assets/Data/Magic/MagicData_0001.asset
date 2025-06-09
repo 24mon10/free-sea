@@ -16,4 +16,7 @@ MonoBehaviour:
   magicName: "\u30D2\u30FC\u30EB"
   magicDesc: "HP\u3092\u56DE\u5FA9\u3057\u307E\u3059"
   cost: 3
-  magicEffects: []
+  magicEffects:
+  - category: 1
+    target: 0
+    value: 30
