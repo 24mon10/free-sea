@@ -270,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 86910030}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39.120003, y: 1.5, z: 96.75}
+  m_LocalPosition: {x: 0, y: 1.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2525,7 +2525,7 @@ PrefabInstance:
       addedObject: {fileID: 1817741938}
     - targetCorrespondingSourceObject: {fileID: 1277365423975794, guid: afd8b1b088fa65d4baa6aea152587113, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1817741937}
+      addedObject: {fileID: 1817741941}
   m_SourcePrefab: {fileID: 100100000, guid: afd8b1b088fa65d4baa6aea152587113, type: 3}
 --- !u!1 &974099524
 GameObject:
@@ -3423,9 +3423,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8434589221339364836, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1255744044}
-    - targetCorrespondingSourceObject: {fileID: 8434589221339364836, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1255744049}
   m_SourcePrefab: {fileID: 100100000, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
 --- !u!4 &1255744042 stripped
 Transform:
@@ -3647,19 +3644,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9099099296081717086, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
   m_PrefabInstance: {fileID: 1255744041}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1255744049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1255744043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da76c2419309854ab8ded644716e689, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneMovementData: {fileID: 11400000, guid: b064226d91a40de44b069e2accbb5773, type: 2}
 --- !u!1 &1256636521
 GameObject:
   m_ObjectHideFlags: 0
@@ -5483,19 +5467,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1277365423975794, guid: afd8b1b088fa65d4baa6aea152587113, type: 3}
   m_PrefabInstance: {fileID: 939268373}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1817741937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1817741935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 463d633791be52f428f3be6fb81201ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scene: 1
 --- !u!65 &1817741938
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5559,6 +5530,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 15, z: 38}
   m_Center: {x: -1.5, y: 16, z: 38}
+--- !u!114 &1817741941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817741935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d23e49b5a4b5c240bd5d57d2d26c8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: VillageScene
 --- !u!1001 &1822561600
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2292,10 +2292,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 573466119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 463d633791be52f428f3be6fb81201ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d23e49b5a4b5c240bd5d57d2d26c8df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 2
+  sceneName: WorldScene
 --- !u!1001 &664298021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3473,53 +3473,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &963910172
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 963910174}
-  - component: {fileID: 963910173}
-  m_Layer: 0
-  m_Name: SceneManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &963910173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963910172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55beeb0c5ae72d44da1b3b15b746b0dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneMovementData: {fileID: 11400000, guid: b064226d91a40de44b069e2accbb5773, type: 2}
-  fadePrefab: {fileID: 2453956402971807137, guid: 12717a72aa81dd547bce310c32168679, type: 3}
-  fadeSpeed: 5
---- !u!4 &963910174
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963910172}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.750416, y: 0.42100772, z: 29.650135}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &965296135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4469,19 +4422,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1194052084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1194052075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da76c2419309854ab8ded644716e689, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneMovementData: {fileID: 11400000, guid: b064226d91a40de44b069e2accbb5773, type: 2}
 --- !u!1001 &1227406611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6990,6 +6930,10 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3766844547119126924, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4132312772176831909, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
       propertyPath: m_Name
       value: Rio
@@ -7069,9 +7013,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8434589221339364836, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1194052083}
-    - targetCorrespondingSourceObject: {fileID: 8434589221339364836, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1194052084}
   m_SourcePrefab: {fileID: 100100000, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
 --- !u!4 &1980363013 stripped
 Transform:
@@ -7786,4 +7727,3 @@ SceneRoots:
   - {fileID: 809281882}
   - {fileID: 1080057438}
   - {fileID: 1848494304}
-  - {fileID: 963910174}

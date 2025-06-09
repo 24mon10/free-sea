@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
 	public void OnJump(InputAction.CallbackContext context)
 	{
 		// Performedフェーズの判定を行う
-		if (context.phase == InputActionPhase.Performed)
+		if (context.phase == InputActionPhase.Performed && state != State.Talk)
 		{
 			// ボタンが押された瞬間かつ着地している時だけ処理
 			if (!context.performed || !_characterController.isGrounded) return;
