@@ -9,7 +9,7 @@ public class EnemyActionRecord
 	//カテゴリ
 	[SerializeField] EnemyActionCategory.ActionCategory actionCategory;
 	//条件リスト
-	public List<EnemyConditionRecord> enemyConditionRecords;
+	[SerializeField] List<EnemyConditionRecord> enemyConditionRecords;
 	//行動が魔法だった時の対象データ
 	[Header("行動が魔法だった時の対象魔法データを指定します。"),SerializeField]
 	MagicData magicData;
