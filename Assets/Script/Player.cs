@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
 	private Camera m_targetCamera;
 
 	[SerializeField] GameObject player;
+	[SerializeField] GameObject menu;
 
 	private Transform _transform;
 	private CharacterController _characterController;
@@ -107,6 +108,26 @@ public class Player : MonoBehaviour
 
 		}
 	}
+
+	public void OnMenu(InputAction.CallbackContext context)
+	{
+		if(context.performed && state != State.Talk)
+		{
+			menu.SetActive(true);
+			Time.timeScale = 0;
+		}
+	}
+	public void OnCancel(InputAction.CallbackContext context)
+	{
+		if(menu.activeSelf)
+		{
+			if(context.performed)
+			{
+				menu.SetActive(false);
+				Time.timeScale = 1.0f;
+			}
+		}
+	}
 	private void Awake()
 	{
 		_transform = transform;
@@ -119,7 +140,7 @@ public class Player : MonoBehaviour
 	}
 
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		Debug.Log(state);
 		if(state == State.Normal)

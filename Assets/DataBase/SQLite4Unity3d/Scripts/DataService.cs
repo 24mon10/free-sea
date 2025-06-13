@@ -112,6 +112,7 @@ public class DataService{
 				level = 1,
 				n_exp = 0,
 				hp = 15,
+				mp = 3,
 				strength = 5,
 				guard = 3,
 				speed = 7
@@ -120,6 +121,7 @@ public class DataService{
 				level = 2,
 				n_exp = 10,
 				hp = 20,
+				mp = 6,
 				strength = 8,
 				guard = 6,
 				speed = 10
@@ -128,6 +130,7 @@ public class DataService{
 				level = 3,
 				n_exp = 25,
 				hp = 25,
+				mp = 9,
 				strength = 11,
 				guard = 9,
 				speed = 13
@@ -136,6 +139,7 @@ public class DataService{
 				level = 4,
 				n_exp = 45,
 				hp = 30,
+				mp = 12,
 				strength = 14,
 				guard = 12,
 				speed = 16
@@ -144,6 +148,7 @@ public class DataService{
 				level = 5,
 				n_exp = 70,
 				hp = 35,
+				mp = 15,
 				strength = 17,
 				guard = 15,
 				speed = 19
@@ -162,6 +167,7 @@ public class DataService{
 				id = 1,
 				name = "スライム",
 				hp = 5,
+				mp = 0,
 				strength = 5,
 				guard = 2,
 				speed = 6,

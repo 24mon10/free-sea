@@ -7,6 +7,7 @@ public class Enemies
 	public int id { get; set; }
 	public string name { get; set; }
 	public int hp { get; set; }
+	public int mp { get; set; }
 	public int strength { get; set; }
 	public int guard { get; set; }
 	public int speed { get; set; }
@@ -15,8 +16,8 @@ public class Enemies
 
 	public override string ToString()
 	{
-		return string.Format("[Items: Id={0}, Name={1}, Hp={2}, Strength={3}," +
-			" Guard={4}, Speed={5}, Expg={6},gold[7] ]",
-			id, name, hp, strength, guard, speed, expg, gold);
+		return string.Format("[Items: Id={0}, Name={1}, Hp={2}, mp={3},Strength={4}," +
+			" Guard={5}, Speed={6}, Expg={7},gold[8] ]",
+			id, name, hp, mp, strength, guard, speed, expg, gold);
 	}
 }
