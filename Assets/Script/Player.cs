@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -8,7 +10,8 @@ public class Player : MonoBehaviour
 	public enum State
 	{
 		Normal,
-		Talk
+		Talk,
+		Menu
 	}
 
 	[Header("移動の速さ"), SerializeField]
@@ -31,6 +34,7 @@ public class Player : MonoBehaviour
 
 	[SerializeField] GameObject player;
 	[SerializeField] GameObject menu;
+	[SerializeField] EventSystem eventsystem;
 
 	private Transform _transform;
 	private CharacterController _characterController;
@@ -69,15 +73,19 @@ public class Player : MonoBehaviour
 	}
 	public void OnMove(InputAction.CallbackContext context)
 	{
-		// 入力値を保持しておく
-		_inputMove = context.ReadValue<Vector2>();
-		animator.SetBool("Move", true);
+		if (state == State.Normal)
+		{
+			// 入力値を保持しておく
+			_inputMove = context.ReadValue<Vector2>();
+			animator.SetBool("Move", true);
+		}
+		
 	}
 
 	public void OnJump(InputAction.CallbackContext context)
 	{
 		// Performedフェーズの判定を行う
-		if (context.phase == InputActionPhase.Performed && state != State.Talk)
+		if (context.phase == InputActionPhase.Performed && state == State.Normal)
 		{
 			// ボタンが押された瞬間かつ着地している時だけ処理
 			if (!context.performed || !_characterController.isGrounded) return;
@@ -94,7 +102,7 @@ public class Player : MonoBehaviour
 		{
 			decision = true;
 			Debug.Log(decision);
-
+			
 		}
 	}
 
@@ -109,12 +117,14 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	//メニュー画面
 	public void OnMenu(InputAction.CallbackContext context)
 	{
 		if(context.performed && state != State.Talk)
 		{
 			menu.SetActive(true);
 			Time.timeScale = 0;
+			SetState(State.Menu);
 		}
 	}
 	public void OnCancel(InputAction.CallbackContext context)
@@ -125,6 +135,7 @@ public class Player : MonoBehaviour
 			{
 				menu.SetActive(false);
 				Time.timeScale = 1.0f;
+				SetState(State.Normal);
 			}
 		}
 	}

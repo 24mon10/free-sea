@@ -1,5 +1,7 @@
 ﻿using SQLite4Unity3d;
 using UnityEngine;
+using System.Linq;
+
 #if !UNITY_EDITOR
 using System.Collections;
 using System.IO;
@@ -110,7 +112,7 @@ public class DataService{
 		_connection.InsertAll(new[] {
 			new PlayerData {
 				level = 1,
-				n_exp = 0,
+				n_exp = 10,
 				hp = 15,
 				mp = 3,
 				strength = 5,
@@ -119,7 +121,7 @@ public class DataService{
 			},
 			new PlayerData {
 				level = 2,
-				n_exp = 10,
+				n_exp = 25,
 				hp = 20,
 				mp = 6,
 				strength = 8,
@@ -128,7 +130,7 @@ public class DataService{
 			},
 			new PlayerData {
 				level = 3,
-				n_exp = 25,
+				n_exp = 45,
 				hp = 25,
 				mp = 9,
 				strength = 11,
@@ -137,7 +139,7 @@ public class DataService{
 			},
 			new PlayerData {
 				level = 4,
-				n_exp = 45,
+				n_exp = 70,
 				hp = 30,
 				mp = 12,
 				strength = 14,
@@ -146,7 +148,7 @@ public class DataService{
 			},
 			new PlayerData {
 				level = 5,
-				n_exp = 70,
+				n_exp = 0,
 				hp = 35,
 				mp = 15,
 				strength = 17,
@@ -183,8 +185,14 @@ public class DataService{
 	{
 		return _connection.Table<Magic>();
 	}
-	public IEnumerable<PlayerData> GetPlayerData()
+	//プレイヤーデータの全ての要素を指す
+	public List<PlayerData> GetAllPlayerData()
 	{
-		return _connection.Table<PlayerData>();
+		return _connection.Table<PlayerData>().ToList();
+	}
+	//プレイヤーの決められた要素のみを指す
+	public PlayerData GetPlayerData(int lv)
+	{
+		return _connection.Table<PlayerData>().Where(pd => pd.level == lv).ElementAt(0);
 	}
 }

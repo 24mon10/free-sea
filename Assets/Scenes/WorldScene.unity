@@ -738,7 +738,7 @@ MonoBehaviour:
   m_VerticalAxis:
     Value: 0
     m_SpeedMode: 1
-    m_MaxSpeed: 1
+    m_MaxSpeed: 10
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_HorizontalAxis:
     Value: 0
     m_SpeedMode: 1
-    m_MaxSpeed: 1
+    m_MaxSpeed: 10
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -1890,6 +1890,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3485ddea-4dda-4a4b-9d1a-0bece35479c4
     m_ActionName: Player/Release[/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f8e80482-88e7-4510-b9f4-ea197c16a162
+    m_ActionName: Player/Menu[/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f41a36e8-a03b-4388-916c-47b3e67a29be
+    m_ActionName: Player/Cancel[/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 68bfee46-e1fd-4e44-a8b8-5190b8cc896f
+    m_ActionName: Player/MenuSelect[/XInputControllerWindows/leftStick]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1959,6 +1971,8 @@ MonoBehaviour:
   _initFallSpeed: 2
   m_targetCamera: {fileID: 1989312045}
   player: {fileID: 131670514}
+  menu: {fileID: 0}
+  eventsystem: {fileID: 0}
 --- !u!4 &622291770
 Transform:
   m_ObjectHideFlags: 0
@@ -2655,7 +2669,7 @@ Transform:
   m_GameObject: {fileID: 1007656900}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.77415, y: 3.8696017, z: 19.892399}
+  m_LocalPosition: {x: 19.77415, y: 3.8696017, z: 18.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
