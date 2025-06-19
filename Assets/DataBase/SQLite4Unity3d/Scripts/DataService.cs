@@ -173,8 +173,21 @@ public class DataService{
 				strength = 5,
 				guard = 2,
 				speed = 6,
-				expg = 2,
-				gold = 4,
+				expg = 4,
+				gold = 10,
+				appearanceRate = 10,
+			},
+			new Enemies
+			{
+				id = 2,
+				name = "インプ",
+				mp = 6,
+				strength = 3,
+				guard = 4,
+				speed = 5,
+				expg = 10,
+				gold = 15,
+				appearanceRate = 5,
 			},
 		});
 	}

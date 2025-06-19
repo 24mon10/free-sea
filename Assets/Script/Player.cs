@@ -43,6 +43,18 @@ public class Player : MonoBehaviour
 	private float _verticalVelocity;
 	private float _turnVelocity;
 	private bool _isGroundedPrev;
+
+	[SerializeField] StateDrow stateDrow;
+
+	[SerializeField] int level;
+	[SerializeField] int n_exp;
+	[SerializeField] int hp;
+	[SerializeField] int mp;
+	[SerializeField] int strength;
+	[SerializeField] int guard;
+	[SerializeField] int speed;
+	private int h_Exp = 0;
+	public int pLevel = 1;
 	
 
 	//ÉvÉåÉCÉÑÅ[ÇÃèÛë‘
@@ -70,6 +82,15 @@ public class Player : MonoBehaviour
 		state = State.Normal;
 		playerTalkScript = GetComponent<PlayerTalkScript>();
 		this.animator = player.GetComponent<Animator>();
+		DataService ds = new DataService("RPG.db");
+		PlayerData playerData = ds.GetPlayerData(pLevel);
+		level = playerData.level;
+		n_exp = playerData.n_exp;
+		hp = playerData.hp;
+		mp = playerData.mp;
+		strength = playerData.strength;
+		guard = playerData.guard;
+		speed = playerData.speed;
 	}
 	public void OnMove(InputAction.CallbackContext context)
 	{
@@ -238,6 +259,30 @@ public class Player : MonoBehaviour
 		{
 			animator.SetBool("Move", false);
 		}
+
+		if (Input.GetKeyDown(KeyCode.T))
+		{
+			if (pLevel == 5) return;
+			h_Exp = 5;
+			n_exp -= h_Exp;
+			if (n_exp == 0)
+			{
+				
+				pLevel++;
+				DataService ds = new DataService("RPG.db");
+				PlayerData playerData = ds.GetPlayerData(pLevel);
+				level = playerData.level;
+				n_exp = playerData.n_exp;
+				hp = playerData.hp;
+				mp = playerData.mp;
+				strength = playerData.strength;
+				guard = playerData.guard;
+				speed = playerData.speed;
+				h_Exp = 0;
+				stateDrow.NextLevelDraw();
+			}
+			
+		}
 	}
 
 
@@ -259,4 +304,25 @@ public class Player : MonoBehaviour
 	{
 		return state;
 	}
+
+	//public void GetExp()
+	//{
+	//	if (Input.GetKeyDown(KeyCode.F2))
+	//	{
+	//		h_Exp += 1;
+	//		n_exp -= h_Exp;
+	//		if (n_exp == 0)
+	//		{
+	//			DataService ds = new DataService("RPG.db");
+	//			PlayerData playerData = ds.GetPlayerData(2);
+	//			level = playerData.level;
+	//			n_exp = playerData.n_exp;
+	//			hp = playerData.hp;
+	//			mp = playerData.mp;
+	//			strength = playerData.strength;
+	//			guard = playerData.guard;
+	//			speed = playerData.speed;
+	//		}
+	//	}
+	//}
 }

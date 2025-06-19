@@ -13,11 +13,12 @@ public class Enemies
 	public int speed { get; set; }
 	public int expg { get; set; }
 	public int gold { get; set; }
+	public int appearanceRate { get; set; }
 
 	public override string ToString()
 	{
-		return string.Format("[Items: Id={0}, Name={1}, Hp={2}, mp={3},Strength={4}," +
-			" Guard={5}, Speed={6}, Expg={7},gold[8] ]",
-			id, name, hp, mp, strength, guard, speed, expg, gold);
+		return string.Format("[Items: Id={0}, Name={1}, Hp={2}, Mp={3},Strength={4}," +
+			" Guard={5}, Speed={6}, Expg={7},gold[8],AppearanceRate[9] ]",
+			id, name, hp, mp, strength, guard, speed, expg, gold, appearanceRate);
 	}
 }
