@@ -11,7 +11,8 @@ public class Player : MonoBehaviour
 	{
 		Normal,
 		Talk,
-		Menu
+		Menu,
+		Battle,
 	}
 
 	[Header("移動の速さ"), SerializeField]
@@ -39,7 +40,7 @@ public class Player : MonoBehaviour
 	private Transform _transform;
 	private CharacterController _characterController;
 
-	private Vector2 _inputMove;
+	public Vector2 _inputMove;
 	private float _verticalVelocity;
 	private float _turnVelocity;
 	private bool _isGroundedPrev;
@@ -55,6 +56,7 @@ public class Player : MonoBehaviour
 	[SerializeField] int speed;
 	private int h_Exp = 0;
 	public int pLevel = 1;
+	public int g_Exp;
 	
 
 	//プレイヤーの状態
@@ -91,6 +93,8 @@ public class Player : MonoBehaviour
 		strength = playerData.strength;
 		guard = playerData.guard;
 		speed = playerData.speed;
+
+		g_Exp = playerData.n_exp;
 	}
 	public void OnMove(InputAction.CallbackContext context)
 	{
@@ -141,7 +145,7 @@ public class Player : MonoBehaviour
 	//メニュー画面
 	public void OnMenu(InputAction.CallbackContext context)
 	{
-		if(context.performed && state != State.Talk)
+		if(context.performed && state == State.Normal)
 		{
 			menu.SetActive(true);
 			Time.timeScale = 0;
@@ -169,6 +173,7 @@ public class Player : MonoBehaviour
 		{
 			m_targetCamera = Camera.main;
 		}
+
 	}
 
 
@@ -218,7 +223,7 @@ public class Player : MonoBehaviour
 
 			if (_inputMove != Vector2.zero)
 			{
-				animator.SetBool("Move", true);
+				//animator.SetBool("Move", true);
 				// 移動入力がある場合は、振り向き動作も行う
 				/*
 				// 操作入力からy軸周りの目標角度[deg]を計算
@@ -264,10 +269,10 @@ public class Player : MonoBehaviour
 		{
 			if (pLevel == 5) return;
 			h_Exp = 5;
-			n_exp -= h_Exp;
-			if (n_exp == 0)
+			g_Exp -= h_Exp;
+			stateDrow.ExpDraw();
+			if (g_Exp == 0)
 			{
-				
 				pLevel++;
 				DataService ds = new DataService("RPG.db");
 				PlayerData playerData = ds.GetPlayerData(pLevel);
@@ -278,6 +283,8 @@ public class Player : MonoBehaviour
 				strength = playerData.strength;
 				guard = playerData.guard;
 				speed = playerData.speed;
+
+				g_Exp = playerData.n_exp;
 				h_Exp = 0;
 				stateDrow.NextLevelDraw();
 			}

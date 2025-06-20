@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using static Cinemachine.DocumentationSortingAttribute;
@@ -19,18 +20,8 @@ public class StateDrow : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-	{ 
-		player.GetComponent<Player>();
-		
-		DataService ds = new DataService("RPG.db");
-		PlayerData playerData = ds.GetPlayerData(1);
-		levelText.text += playerData.level;
-		n_expText.text += playerData.n_exp;
-		hpText.text += playerData.hp;
-		mpText.text += playerData.mp;
-		strengthText.text += playerData.strength;
-		guardText.text += playerData.guard;
-		speedText.text += playerData.speed;
+	{
+		DrawState();
 	}
 
     // Update is called once per frame
@@ -40,18 +31,28 @@ public class StateDrow : MonoBehaviour
 	
 	public void NextLevelDraw()
 	{
-		
-		Debug.Log(player.pLevel);
+		DrawState();
+	}
+
+	public void DrawState()
+	{
 		DataService ds = new DataService("RPG.db");
-		
 		PlayerData playerData = ds.GetPlayerData(player.pLevel);
-		
-		levelText.text += playerData.level;
-		n_expText.text += playerData.n_exp.ToString();
-		hpText.text += playerData.hp.ToString();
-		mpText.text += playerData.mp.ToString();
-		strengthText.text += playerData.strength.ToString();
-		guardText.text += playerData.guard.ToString();
-		speedText.text += playerData.speed.ToString();
+
+		levelText.text = "Lv ." + playerData.level.ToString();
+		n_expText.text = "NextEXP : " + playerData.n_exp.ToString() + " / " + playerData.n_exp.ToString();
+		hpText.text = "HP : " + playerData.hp.ToString();
+		mpText.text = "MP : " + playerData.mp.ToString();
+		strengthText.text = "Strength : " + playerData.strength.ToString();
+		guardText.text = "Guard : " + playerData.guard.ToString();
+		speedText.text = "Speed : " + playerData.speed.ToString();
+	}
+
+	public void ExpDraw()
+	{
+		DataService ds = new DataService("RPG.db");
+		PlayerData playerData = ds.GetPlayerData(player.pLevel);
+
+		n_expText.text = "NextEXP : " + player.g_Exp + " / " + playerData.n_exp.ToString();
 	}
 }

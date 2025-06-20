@@ -168,27 +168,39 @@ public class DataService{
 			{
 				id = 1,
 				name = "スライム",
-				hp = 5,
+				hp = 10,
 				mp = 0,
-				strength = 5,
+				strength = 4,
 				guard = 2,
 				speed = 6,
 				expg = 4,
 				gold = 10,
-				appearanceRate = 10,
 			},
 			new Enemies
 			{
 				id = 2,
-				name = "インプ",
+				name = "インセクト",
+				hp = 7,
 				mp = 6,
 				strength = 3,
 				guard = 4,
-				speed = 5,
+				speed = 10,
+				expg = 7,
+				gold = 13,
+			},
+			new Enemies 
+			{
+				id = 3,
+				name = "怪物サボテン",
+				hp = 15,
+				mp = 0,
+				strength = 8,
+				guard = 4,
+				speed = 3,
 				expg = 10,
 				gold = 15,
-				appearanceRate = 5,
 			},
+			
 		});
 	}
 	public IEnumerable<Items> GetItems(){
@@ -207,5 +219,10 @@ public class DataService{
 	public PlayerData GetPlayerData(int lv)
 	{
 		return _connection.Table<PlayerData>().Where(pd => pd.level == lv).ElementAt(0);
+	}
+
+	public Enemies GetEnemiesData(int en)
+	{
+		return _connection.Table<Enemies>().Where(ed => ed.id == en).ElementAt(0);
 	}
 }
