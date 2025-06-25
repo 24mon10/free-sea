@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EncountManager : MonoBehaviour
 {
@@ -13,12 +14,21 @@ public class EncountManager : MonoBehaviour
 	//目的の時間
 	[SerializeField] float destinationTime;
 
-	[SerializeField] Player player;
+	private GameObject player;
+	private Player playerScript;
 	AudioSource audioSource;
+	string currentSceneName;
 
-    // Start is called before the first frame update
-    void Start()
+	public static EncountManager Instance
+	{
+		get; private set;
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
+		player = GameObject.Find("Player");
+		playerScript = player.GetComponent<Player>();
 		SetDestinationTime();
 		audioSource = GetComponent<AudioSource>();
     }
@@ -26,28 +36,35 @@ public class EncountManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		currentSceneName = SceneManager.GetActiveScene().name;
+		Debug.Log(currentSceneName);
+		//現在のシーンがWorldSceneじゃなかったら計測しない
+		if(currentSceneName != "WorldScene")return;
+
 		//プレイヤーが動いていなければ計測しない
-		if (player._inputMove == Vector2.zero) return;
+		if (playerScript._inputMove == Vector2.zero) return;
 
 		//プレイヤーが何かしらの状態に変化していたら計測を止める
-		if (player.GetState() == Player.State.Talk
-			|| player.GetState() == Player.State.Menu
-			|| player.GetState() == Player.State.Battle) return;
+		if (playerScript.GetState() == Player.State.Talk
+			|| playerScript.GetState() == Player.State.Menu
+			|| playerScript.GetState() == Player.State.Battle) return;
 		elapsedTime += Time.deltaTime;
 		if(elapsedTime >= destinationTime)
 		{
 			Debug.Log("遭遇");
 			Initiate.Fade(sceneName, Color.black, 2.0f);
 			audioSource.Play();
-			player.SetState(Player.State.Battle);
+			playerScript.SetState(Player.State.Battle);
 			elapsedTime = 0.0f;
 			SetDestinationTime();
 		}
 		
-		DontDestroyOnLoad(gameObject);
 	}
+
 	public void SetDestinationTime()
 	{
 		destinationTime = Random.Range(encountMinTime, encountMaxTime);
 	}
+
+	
 }

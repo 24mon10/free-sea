@@ -34,8 +34,10 @@ public class Player : MonoBehaviour
 	private Camera m_targetCamera;
 
 	[SerializeField] GameObject player;
+	[SerializeField] GameObject rio;
 	[SerializeField] GameObject menu;
 	[SerializeField] EventSystem eventsystem;
+	
 
 	private Transform _transform;
 	private CharacterController _characterController;
@@ -57,7 +59,6 @@ public class Player : MonoBehaviour
 	private int h_Exp = 0;
 	public int pLevel = 1;
 	public int g_Exp;
-	
 
 	//ÉvÉåÉCÉÑÅ[ÇÃèÛë‘
 	private State state;
@@ -83,7 +84,7 @@ public class Player : MonoBehaviour
 	{
 		state = State.Normal;
 		playerTalkScript = GetComponent<PlayerTalkScript>();
-		this.animator = player.GetComponent<Animator>();
+		animator = rio.GetComponent<Animator>();
 		DataService ds = new DataService("RPG.db");
 		PlayerData playerData = ds.GetPlayerData(pLevel);
 		level = playerData.level;
@@ -173,7 +174,6 @@ public class Player : MonoBehaviour
 		{
 			m_targetCamera = Camera.main;
 		}
-
 	}
 
 
@@ -311,6 +311,31 @@ public class Player : MonoBehaviour
 	{
 		return state;
 	}
+	public void SetPlayer(GameObject pl)
+	{
+		player = pl;
+	}
+
+	//public void NextScenePosition()
+	//{
+	//	GameObject gate = GameObject.Find("Gats");
+	//	changeScene = gate.GetComponent<ChangeScene>();
+	//	if (changeScene.sceneName == "VillegeScene")
+	//	{
+	//		this.gameObject.transform.position = vPlayerPos.transform.position;
+	//		this.gameObject.transform.rotation = vPlayerPos.transform.rotation;
+	//	}
+	//	if (changeScene.sceneName == "WorldScene")
+	//	{
+	//		this.gameObject.transform.position = wPlayerPos.transform.position;
+	//		this.gameObject.transform.rotation = wPlayerPos.transform.rotation;
+	//	}
+	//	if (changeScene.sceneName == "BattleScene")
+	//	{
+	//		this.gameObject.transform.position = bPlayerPos.transform.position;
+	//		this.gameObject.transform.rotation = bPlayerPos.transform.rotation;
+	//	}
+	//}
 
 	//public void GetExp()
 	//{
