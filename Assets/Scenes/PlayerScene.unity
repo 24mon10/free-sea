@@ -863,7 +863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3766844547119126924, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4132312772176831909, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
       propertyPath: m_Name
@@ -871,7 +871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4132312772176831909, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8073086772555192299, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2115,6 +2115,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &977746046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 977746047}
+  - component: {fileID: 977746048}
+  m_Layer: 0
+  m_Name: PlayerStatus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &977746047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977746046}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.12478638, y: -6.0051117, z: -18.709808}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &977746048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977746046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 595065c06716e814faed57cf4fbd3898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
+  n_exp: 0
+  hp: 0
+  mp: 0
+  strength: 0
+  guard: 0
+  speed: 0
+  pLevel: 1
+  g_Exp: 0
+  stateDrow: {fileID: 836308804}
 --- !u!1 &978377069
 GameObject:
   m_ObjectHideFlags: 0
@@ -3654,13 +3708,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1922457523}
-  - component: {fileID: 1922457522}
   - component: {fileID: 1922457521}
   - component: {fileID: 1922457520}
   - component: {fileID: 1922457524}
+  - component: {fileID: 1922457525}
   m_Layer: 0
   m_Name: BattlePlayer
-  m_TagString: Player
+  m_TagString: BattlePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3672,7 +3726,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922457519}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -3748,7 +3802,7 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1922457522}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnDecision
         m_Mode: 0
@@ -3764,7 +3818,7 @@ MonoBehaviour:
     m_ActionName: Player/Decision[/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1922457522}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: Release
         m_Mode: 0
@@ -3812,7 +3866,7 @@ CharacterController:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Height: 1.8
   m_Radius: 0.3
@@ -3821,39 +3875,6 @@ CharacterController:
   m_SkinWidth: 0.001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &1922457522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922457519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6223ec1f790d99b45ae25fc4ade43e0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 5
-  _jumpSpeed: 7.5
-  _gravity: 15
-  _fallSpeed: 10
-  _initFallSpeed: 2
-  m_targetCamera: {fileID: 0}
-  player: {fileID: 1377996216}
-  rio: {fileID: 0}
-  menu: {fileID: 0}
-  eventsystem: {fileID: 0}
-  _inputMove: {x: 0, y: 0}
-  stateDrow: {fileID: 0}
-  level: 0
-  n_exp: 0
-  hp: 0
-  mp: 0
-  strength: 0
-  guard: 0
-  speed: 0
-  pLevel: 1
-  g_Exp: 0
 --- !u!4 &1922457523
 Transform:
   m_ObjectHideFlags: 0
@@ -3877,18 +3898,40 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922457519}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45fd2f3d15ec44c4cb4f0e062bb94dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  talkIcon: {fileID: 0}
-  talkUI: {fileID: 0}
+  talkIcon: {fileID: 1080057434}
+  talkUI: {fileID: 1513385924}
   splitString: <>
   textSpeed: 0.05
-  pushIcon: {fileID: 0}
+  pushIcon: {fileID: 2043512738}
   pushFlashTime: 0.2
   player: {fileID: 0}
+--- !u!114 &1922457525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922457519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2c29cb4a5f75149b48c516228a7f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rio: {fileID: 1377996216}
+  level: 0
+  n_exp: 0
+  hp: 0
+  mp: 0
+  strength: 0
+  guard: 0
+  speed: 0
+  pLevel: 1
+  g_Exp: 0
 --- !u!1 &1960138088
 GameObject:
   m_ObjectHideFlags: 0
@@ -4701,4 +4744,5 @@ SceneRoots:
   - {fileID: 836308803}
   - {fileID: 1080057438}
   - {fileID: 1513385928}
+  - {fileID: 977746047}
   - {fileID: 78680064}

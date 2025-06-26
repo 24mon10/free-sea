@@ -6,22 +6,14 @@ using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour
 {
 	[SerializeField] public string sceneName;
-	public string sceneManager;
-
-	private void Start()
-	{
-	}
+	[SerializeField] public int posIndex;
 
 	private void OnTriggerEnter(Collider other)
 	{
 		if(other.gameObject.CompareTag("Player"))
 		{
-			SceneManager.LoadScene(sceneName);
-			SceneManager.LoadScene("PlayerScene", LoadSceneMode.Additive);
-			SceneManager.LoadScene("SystemScene", LoadSceneMode.Additive);
-
-			
+			SceneChangeManager.ChangeScene(sceneName);
+			PlayerNextPosIndex.Index = posIndex;
 		}
-
 	}
 }

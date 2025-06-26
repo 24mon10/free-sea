@@ -9,7 +9,7 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 public class StateDrow : MonoBehaviour
 {
-	[SerializeField] Player player;
+	[SerializeField] PlayerStatus playerStatus;
 	[SerializeField] TextMeshProUGUI levelText;
 	[SerializeField] TextMeshProUGUI n_expText;
 	[SerializeField] TextMeshProUGUI hpText;
@@ -37,7 +37,7 @@ public class StateDrow : MonoBehaviour
 	public void DrawState()
 	{
 		DataService ds = new DataService("RPG.db");
-		PlayerData playerData = ds.GetPlayerData(player.pLevel);
+		PlayerData playerData = ds.GetPlayerData(playerStatus.pLevel);
 
 		levelText.text = "Lv ." + playerData.level.ToString();
 		n_expText.text = "NextEXP : " + playerData.n_exp.ToString() + " / " + playerData.n_exp.ToString();
@@ -51,8 +51,8 @@ public class StateDrow : MonoBehaviour
 	public void ExpDraw()
 	{
 		DataService ds = new DataService("RPG.db");
-		PlayerData playerData = ds.GetPlayerData(player.pLevel);
+		PlayerData playerData = ds.GetPlayerData(playerStatus.pLevel);
 
-		n_expText.text = "NextEXP : " + player.g_Exp + " / " + playerData.n_exp.ToString();
+		n_expText.text = "NextEXP : " + playerStatus.g_Exp + " / " + playerData.n_exp.ToString();
 	}
 }

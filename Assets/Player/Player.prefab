@@ -279,6 +279,7 @@ MonoBehaviour:
   _initFallSpeed: 2
   m_targetCamera: {fileID: 1389718738436936658}
   player: {fileID: 1291638319608453543}
+  rio: {fileID: 0}
   menu: {fileID: 0}
   eventsystem: {fileID: 0}
   _inputMove: {x: 0, y: 0}
@@ -535,17 +536,9 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3766844547119126924, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 4132312772176831909, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
       propertyPath: m_Name
       value: Rio
-      objectReference: {fileID: 0}
-    - target: {fileID: 4132312772176831909, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8073086772555192299, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
       propertyPath: m_LocalPosition.x

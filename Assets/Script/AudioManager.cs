@@ -12,16 +12,25 @@ public class AudioManager : MonoBehaviour
 
 	private void Start()
 	{
-		beforeScene = "VillageScene";
-		a_bgm.Play();
+		/*
+		SceneChangeManager sceneChangeManager;
+		GameObject sCM = GameObject.Find("SceneManager");
+		sceneChangeManager = sCM.AddComponent<SceneChangeManager>();
+		beforeScene = sceneChangeManager.currentScene;
+		Debug.Log(beforeScene + "が入っている");
+		if (beforeScene == "VillageScene" || beforeScene == null)
+		{
+			a_bgm.Play();
+		}
+		*/
 
 		//シーン遷移遷移したらBGMを切り替える処理
-		SceneManager.activeSceneChanged += OnActiveSceneChange;
+		//SceneManager.activeSceneChanged += OnActiveSceneChange;
 	}
 
 	void OnActiveSceneChange(Scene prevScene, Scene nextScene)
 	{
-		if(beforeScene == "VillageScene" && nextScene.name == "WorldScene")
+		if(beforeScene == "VillageScene" || beforeScene == null && nextScene.name == "WorldScene")
 		{
 			a_bgm.Stop();
 			b_bgm.Play();
@@ -43,7 +52,7 @@ public class AudioManager : MonoBehaviour
 			b_bgm.Play();
 		}
 
-			//遷移後のシーンを1つ前のシーンとして登録
-			beforeScene = nextScene.name;
+		//遷移後のシーンを1つ前のシーンとして登録
+		beforeScene = nextScene.name;
 	}
 }

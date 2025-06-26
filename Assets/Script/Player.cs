@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
 		Normal,
 		Talk,
 		Menu,
-		Battle,
 	}
 
 	[Header("ˆÚ“®‚Ì‘¬‚³"), SerializeField]
@@ -46,8 +45,6 @@ public class Player : MonoBehaviour
 	private float _verticalVelocity;
 	private float _turnVelocity;
 	private bool _isGroundedPrev;
-
-	[SerializeField] StateDrow stateDrow;
 
 	[SerializeField] int level;
 	[SerializeField] int n_exp;
@@ -253,43 +250,18 @@ public class Player : MonoBehaviour
 			{
 				animator.SetBool("Move", false);
 			}
-		if (playerTalkScript.GetConversationPartner() != null
-				&& decision == true)
-		{
-			Debug.Log("‚±‚±‚É“ü‚Á‚½");
-			SetState(State.Talk);
-		}
+			if (playerTalkScript.GetConversationPartner() != null
+					&& decision == true)
+			{
+				Debug.Log("‚±‚±‚É“ü‚Á‚½");
+				SetState(State.Talk);
+			}
 		}
 		else if(state == State.Talk)
 		{
 			animator.SetBool("Move", false);
 		}
 
-		if (Input.GetKeyDown(KeyCode.T))
-		{
-			if (pLevel == 5) return;
-			h_Exp = 5;
-			g_Exp -= h_Exp;
-			stateDrow.ExpDraw();
-			if (g_Exp == 0)
-			{
-				pLevel++;
-				DataService ds = new DataService("RPG.db");
-				PlayerData playerData = ds.GetPlayerData(pLevel);
-				level = playerData.level;
-				n_exp = playerData.n_exp;
-				hp = playerData.hp;
-				mp = playerData.mp;
-				strength = playerData.strength;
-				guard = playerData.guard;
-				speed = playerData.speed;
-
-				g_Exp = playerData.n_exp;
-				h_Exp = 0;
-				stateDrow.NextLevelDraw();
-			}
-			
-		}
 	}
 
 

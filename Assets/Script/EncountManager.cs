@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,10 +15,14 @@ public class EncountManager : MonoBehaviour
 	//目的の時間
 	[SerializeField] float destinationTime;
 
-	private GameObject player;
+	[SerializeField]private GameObject player;
 	private Player playerScript;
 	AudioSource audioSource;
-	string currentSceneName;
+	public static string currentSceneName;
+	private GameObject initScene;
+	private InitScene initSceneScript;
+
+	
 
 	public static EncountManager Instance
 	{
@@ -26,35 +31,35 @@ public class EncountManager : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start()
-    {
-		player = GameObject.Find("Player");
+	{
+		player = GameObject.FindWithTag("Player");
 		playerScript = player.GetComponent<Player>();
 		SetDestinationTime();
 		audioSource = GetComponent<AudioSource>();
+
+		
     }
 
     // Update is called once per frame
     void Update()
     {
-		currentSceneName = SceneManager.GetActiveScene().name;
-		Debug.Log(currentSceneName);
+		currentSceneName = SceneChangeManager.currentSceneName;
+		
 		//現在のシーンがWorldSceneじゃなかったら計測しない
-		if(currentSceneName != "WorldScene")return;
+		if (currentSceneName != "WorldScene")return;
 
 		//プレイヤーが動いていなければ計測しない
 		if (playerScript._inputMove == Vector2.zero) return;
 
 		//プレイヤーが何かしらの状態に変化していたら計測を止める
 		if (playerScript.GetState() == Player.State.Talk
-			|| playerScript.GetState() == Player.State.Menu
-			|| playerScript.GetState() == Player.State.Battle) return;
+			|| playerScript.GetState() == Player.State.Menu) return;
 		elapsedTime += Time.deltaTime;
 		if(elapsedTime >= destinationTime)
 		{
 			Debug.Log("遭遇");
-			Initiate.Fade(sceneName, Color.black, 2.0f);
+			SceneChangeManager.ChangeScene(sceneName);
 			audioSource.Play();
-			playerScript.SetState(Player.State.Battle);
 			elapsedTime = 0.0f;
 			SetDestinationTime();
 		}
@@ -63,8 +68,7 @@ public class EncountManager : MonoBehaviour
 
 	public void SetDestinationTime()
 	{
-		destinationTime = Random.Range(encountMinTime, encountMaxTime);
+		destinationTime = UnityEngine.Random.Range(encountMinTime, encountMaxTime);
 	}
 
-	
 }

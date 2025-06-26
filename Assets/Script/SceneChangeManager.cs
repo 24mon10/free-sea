@@ -1,19 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SceneChangeManager : MonoBehaviour
+public class SceneChangeManager
 {
-	[SerializeField]private string currentScene;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	static readonly string PlayerSceneName = "PlayerScene";
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public static string currentSceneName = "";
+
+	static public void AddPlayerScene()
+	{
+		Debug.Log("AddPlayerScene");
+		SceneManager.LoadScene(PlayerSceneName, LoadSceneMode.Additive);
+	}
+
+	static public void SubPlayerScene()
+	{
+		Debug.Log("SubPlayerScene");
+		SceneManager.UnloadSceneAsync(PlayerSceneName);
+	}
+
+	static public void ChangeScene(string sceneName)
+	{
+		if(currentSceneName.Length > 0)
+		{
+			Debug.Log("UnloadSceneAsync:" + currentSceneName);
+			SceneManager.UnloadSceneAsync(currentSceneName);
+		}
+
+		Debug.Log("LoadScene(Additive):" + sceneName);
+		SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+		currentSceneName = sceneName;
+	}
 }
