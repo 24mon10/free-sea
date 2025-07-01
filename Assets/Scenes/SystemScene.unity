@@ -238,7 +238,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_image: {fileID: 1487276880}
-  fadeDuration: 1
 --- !u!1 &560988072
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,9 +449,10 @@ GameObject:
   - component: {fileID: 1704225079}
   - component: {fileID: 1704225078}
   - component: {fileID: 1704225077}
+  - component: {fileID: 1704225080}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: AudioManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -676,66 +676,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e281febe990104fb11623e836e160d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  a_bgm: {fileID: 1704225078}
-  b_bgm: {fileID: 1704225077}
---- !u!1 &1847808923
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1847808925}
-  - component: {fileID: 1847808924}
-  - component: {fileID: 1847808926}
-  m_Layer: 0
-  m_Name: EncountManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1847808924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1847808923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 523ed42a16b33ce4f82ef51484a5a024, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: BattleScene
-  encountMinTime: 3
-  encountMaxTime: 10
-  elapsedTime: 0
-  destinationTime: 0
-  player: {fileID: 0}
---- !u!4 &1847808925
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1847808923}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.62, y: 1.4, z: 21.75}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1847808926
+  audioSources:
+  - {fileID: 1704225078}
+  - {fileID: 1704225077}
+  - {fileID: 1704225080}
+--- !u!82 &1704225080
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1847808923}
+  m_GameObject: {fileID: 1704225075}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -825,6 +776,58 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1847808923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1847808925}
+  - component: {fileID: 1847808924}
+  m_Layer: 0
+  m_Name: EncountManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1847808924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847808923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523ed42a16b33ce4f82ef51484a5a024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: BattleScene
+  encountMinTime: 3
+  encountMaxTime: 10
+  elapsedTime: 0
+  destinationTime: 0
+  player: {fileID: 0}
+  m_fade: {fileID: 494713777}
+  bmg: 2
+--- !u!4 &1847808925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847808923}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.62, y: 1.4, z: 21.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

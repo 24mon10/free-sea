@@ -19,10 +19,10 @@ public class EncountManager : MonoBehaviour
 	private Player playerScript;
 	AudioSource audioSource;
 	public static string currentSceneName;
-	private GameObject initScene;
-	private InitScene initSceneScript;
 
-	
+	[SerializeField] private Fade m_fade = null;
+	[SerializeField]
+	AudioManager.Bgm bmg;
 
 	public static EncountManager Instance
 	{
@@ -36,9 +36,8 @@ public class EncountManager : MonoBehaviour
 		playerScript = player.GetComponent<Player>();
 		SetDestinationTime();
 		audioSource = GetComponent<AudioSource>();
-
 		
-    }
+	}
 
     // Update is called once per frame
     void Update()
@@ -57,9 +56,14 @@ public class EncountManager : MonoBehaviour
 		elapsedTime += Time.deltaTime;
 		if(elapsedTime >= destinationTime)
 		{
+			Action on_completed = () =>
+			{
+				SceneChangeManager.ChangeScene(sceneName);
+				m_fade.FadeIn(2.0f);
+			};
+			GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>().Play(bmg);
+			m_fade.FadeOut(2.0f ,on_completed );
 			Debug.Log("‘˜‹ö");
-			SceneChangeManager.ChangeScene(sceneName);
-			audioSource.Play();
 			elapsedTime = 0.0f;
 			SetDestinationTime();
 		}

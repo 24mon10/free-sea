@@ -29,8 +29,9 @@ public class SceneChangeManager
 			SceneManager.UnloadSceneAsync(currentSceneName);
 		}
 
-		Debug.Log("LoadScene(Additive):" + sceneName);
+		
 		SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
 		currentSceneName = sceneName;
+		Debug.Log("LoadScene(Additive):" + currentSceneName);
 	}
 }

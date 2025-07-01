@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InitScene
   - BattlePlayer
+  - AudioManager
   layers:
   - Default
   - TransparentFX

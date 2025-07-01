@@ -7,28 +7,43 @@ using UnityEngine.UI;
 public class Fade : MonoBehaviour 
 {
 	[SerializeField] private Image m_image;
-	public float fadeDuration = 1.0f;
-	public void CallCoroutine()
+	private IEnumerator FadeAlphaValue(
+	float duration,
+	Action on_completed,
+	bool is_reversing = false
+	)
 	{
-		StartCoroutine(StartFadeOut());
-	}
+		if (!is_reversing) m_image.enabled = true;
 
-	private IEnumerator StartFadeOut()
-	{
-		m_image.enabled = true;
-		float elapsedTime = 0.0f;
-		Color StartColor = m_image.color;
-		Color endColor = new Color(StartColor.r, StartColor.g, StartColor.b, 1.0f);
+		var elapsed_time = 0.0f;
+		var color = m_image.color;
 
-		while (elapsedTime < fadeDuration)
+		while (elapsed_time < duration)
 		{
-			elapsedTime += Time.deltaTime;
-			float t = Mathf.Clamp01(elapsedTime / fadeDuration);
-			m_image.color = Color.Lerp(StartColor, endColor, t);
+			var elapsed_rate = Mathf.Min(elapsed_time / duration, 1.0f);
+			color.a = is_reversing ? 1.0f - elapsed_rate : elapsed_rate;
+			m_image.color = color;
+
 			yield return null;
+			elapsed_time += Time.deltaTime;
 		}
 
-		m_image.color = endColor;
+		if (is_reversing) m_image.enabled = false;
+		if (on_completed != null) on_completed();
 	}
-	
+
+	private void Reset()
+	{
+		m_image = GetComponent<Image>();
+	}
+
+	public void FadeIn(float duration, Action on_completed = null)
+	{
+		StartCoroutine(FadeAlphaValue(duration, on_completed, true));
+	}
+
+	public void FadeOut(float duration, Action on_completed = null)
+	{
+		StartCoroutine(FadeAlphaValue(duration, on_completed));
+	}
 }
